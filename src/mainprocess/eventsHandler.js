@@ -19,13 +19,16 @@ export default  function(){
   var devicesRecordsWindowHandler =null;
 
   ipcMain.on('duration-create',async (event,id)=>{
-    durationCreateWindowHandler= new windowsHandler('durationcreate',{
-      height:300,
-      width:400
-    });
-    await durationCreateWindowHandler.createWindow().then(()=>{
-      durationCreateWindowHandler.sendEventData('duration-create-device-id',id );
-    })    
+    if(durationCreateWindowHandler == null){
+      durationCreateWindowHandler= new windowsHandler('durationcreate',{
+        height:300,
+        width:400
+      });
+      await durationCreateWindowHandler.createWindow().then(()=>{
+        durationCreateWindowHandler.sendEventData('duration-create-device-id',id );
+      })  
+    }
+      
   })
 
   ipcMain.on('duration-create-close',(event,data)=>{
@@ -42,14 +45,17 @@ export default  function(){
 
   ipcMain.on('duration-end',async(event,data)=>{
 
-    durationEndWindowHandler= new windowsHandler('durationend',{
-      height:300,
-      width:500
-    });
-
-    await durationEndWindowHandler.createWindow().then(()=>{
-      durationEndWindowHandler.sendEventData('duration-data',data );
-    })    
+    if(durationEndWindowHandler==null){
+      durationEndWindowHandler= new windowsHandler('durationend',{
+        height:300,
+        width:500
+      });
+  
+      await durationEndWindowHandler.createWindow().then(()=>{
+        durationEndWindowHandler.sendEventData('duration-data',data );
+      })    
+    }
+    
   })
 
   ipcMain.on('duration-end-close',(event,data)=>{
@@ -75,14 +81,17 @@ export default  function(){
 
   ipcMain.on('duration-edit',async(event,data)=>{
 
-    durationEditWindowHandler= new windowsHandler('durationedit',{
-      height:300,
-      width:500
-    });
-
-    await durationEditWindowHandler.createWindow().then(()=>{
-      durationEditWindowHandler.sendEventData('duration-data',data );
-    })    
+    if(durationEditWindowHandler==null){
+      durationEditWindowHandler= new windowsHandler('durationedit',{
+        height:300,
+        width:500
+      });
+  
+      await durationEditWindowHandler.createWindow().then(()=>{
+        durationEditWindowHandler.sendEventData('duration-data',data );
+      }) 
+    }
+       
   })
 
   ipcMain.on('duration-edit-close',(event,data)=>{
@@ -98,20 +107,26 @@ export default  function(){
 
   ipcMain.on('device-records',async(event,data)=>{
 
-    deviceRecordsWindowHandler= new windowsHandler('devicerecord');
+    if(deviceRecordsWindowHandler==null){
+      deviceRecordsWindowHandler= new windowsHandler('devicerecord');
 
-    await deviceRecordsWindowHandler.createWindow().then(()=>{
-      deviceRecordsWindowHandler.sendEventData('device-records-data',data );
-    })    
+      await deviceRecordsWindowHandler.createWindow().then(()=>{
+        deviceRecordsWindowHandler.sendEventData('device-records-data',data );
+      })  
+    }
+      
   })
 
   ipcMain.on('devices-records',async(event,data)=>{
 
-    devicesRecordsWindowHandler= new windowsHandler('devicesrecord');
+    if(devicesRecordsWindowHandler==null){
+      devicesRecordsWindowHandler= new windowsHandler('devicesrecord');
 
-    await devicesRecordsWindowHandler.createWindow().then(()=>{
-      // deviceRecordsWindowHandler.sendEventData('device-records-data',data );
-    })    
+      await devicesRecordsWindowHandler.createWindow().then(()=>{
+        // deviceRecordsWindowHandler.sendEventData('device-records-data',data );
+      })    
+    }
+    
   })
 
 }

@@ -56,7 +56,7 @@ export default {
         
         this.handelEvents()
         this.checkIfThisDeviceIsRented()
-        this.alwaysCheckOnDurations()
+        // this.alwaysCheckOnDurations()
     },
     methods:{
         onOpenDurationCreate(id){
@@ -138,9 +138,10 @@ export default {
                 this.makeTHeDeviceAvailable()
             })
         },
-        alwaysCheckOnDurations(){
-            setInterval(()=>{this.checkIfThisDeviceIsRented()}, 5000)
-        }
+        //this won't work because of the many connections to mysql
+        // alwaysCheckOnDurations(){
+        //     setInterval(()=>{this.checkIfThisDeviceIsRented()}, 1000)
+        // }
         
     }
     

@@ -84,7 +84,7 @@ export default {
                             to:getDateTimeForNormalTime(this.to)
                         }
                         ipcRenderer.send('duration-create-close',dataSentToHomeWindow);
-                    });
+                    }).catch(e=>console.log(e))
                 }
             }
             else {

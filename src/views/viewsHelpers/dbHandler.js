@@ -31,6 +31,7 @@ export default class dbHandler{
         // console.log(query)
         await connection.query(query)
         // console.log(outcome_test)
+        connection=null
 
     }
 
@@ -41,6 +42,7 @@ export default class dbHandler{
         let query = "UPDATE `durations` SET `starts_from` = '"+duration_data.starts_from+ "', `ends_at` = '"+ duration_data.ends_at +"' where `device_id` = " + duration_data.device_id +" ORDER BY id DESC LIMIT 1"
         // console.log(query)
         await connection.query(query)
+        connection=null
     }
 
     async deleteDuration(duration_data){
@@ -49,6 +51,7 @@ export default class dbHandler{
         let query = "delete from `durations` where `device_id` = "+duration_data.device_id+" ORDER BY ID DESC LIMIT 1"
         // console.log(query)
         await connection.query(query)
+        connection=null
     }
 
     async getLastDurationForaDevice(device_id){
@@ -60,6 +63,7 @@ export default class dbHandler{
         let result = await connection.query(query)
         
         // console.log([query,result])
+        connection=null
 
         return result
     }
@@ -69,6 +73,7 @@ export default class dbHandler{
         // console.log(connection)
         var devices = await connection.query('SELECT * FROM devices');
 
+        connection=null
         return devices;
     }
 
@@ -76,7 +81,7 @@ export default class dbHandler{
         let connection= await this.Connect()
         let query = "select `name` from `devices` where id = "+id
         var deviceNAme = await connection.query(query);
-
+        connection=null
         return deviceNAme;
     }
 
@@ -87,7 +92,7 @@ export default class dbHandler{
         let query="select * from durations INNER JOIN devices on durations.device_id = devices.id where `device_id` = "+id+" ORDER BY durations.id DESC LIMIT 10 OFFSET "+pageNumber*10
         // console.log(query)
         var devicesRecords = await connection.query(query);
-
+        connection=null
         return devicesRecords;
     }
 
@@ -98,7 +103,7 @@ export default class dbHandler{
         let query="select * from durations INNER JOIN devices on durations.device_id = devices.id ORDER BY durations.id DESC LIMIT 10 OFFSET "+pageNumber*10
         // console.log(query)
         var devicesRecords = await connection.query(query);
-
+        connection=null
         return devicesRecords;
     }
     
