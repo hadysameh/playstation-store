@@ -17,6 +17,7 @@ export default function(){
       app.on('window-all-closed', () => {
         // On macOS it is common for applications and their menu bar
         // to stay active until the user quits explicitly with Cmd + Q
+        console.log('app will be closed')
         if (process.platform !== 'darwin') {
           app.quit()
         }
@@ -47,6 +48,7 @@ export default function(){
           }
         }
           let winHandler = new windowsHandler('index');
+          // winHandler.win.webContents.openDevTools();
           winHandler.createWindow();
       })
       

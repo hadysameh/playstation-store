@@ -55,15 +55,15 @@ export default {
     mounted(){
         
         this.handelEvents()
-        this.checkIfThisDeviceIsRented()
+        this.adjustTheDeviceIfRented()
         // this.alwaysCheckOnDurations()
     },
     methods:{
         onOpenDurationCreate(id){
             ipcRenderer.send('duration-create',id);
         },
-        //there is a bug here
-        checkIfThisDeviceIsRented(){
+        
+        adjustTheDeviceIfRented(){
             this.db_handler.getLastDurationForaDevice(this.device_id).then(data =>{
                 let nowDateTime=dateHandler.getDateTime()
                 let sqlRowData = data[0][0]
@@ -130,7 +130,7 @@ export default {
 
             ipcRenderer.on(`device_number_${this.device_id}_is_edited`,(event,data)=>{
                 // console.log(`device_number_${this.device_id}_is_edited`)
-            this.checkIfThisDeviceIsRented()
+            this.adjustTheDeviceIfRented()
             })
 
             ipcRenderer.on(`device_number_${this.device_id}_is_available`,(event,data)=>{
@@ -140,7 +140,7 @@ export default {
         },
         //this won't work because of the many connections to mysql
         // alwaysCheckOnDurations(){
-        //     setInterval(()=>{this.checkIfThisDeviceIsRented()}, 1000)
+        //     setInterval(()=>{this.adjustTheDeviceIfRented()}, 1000)
         // }
         
     }
