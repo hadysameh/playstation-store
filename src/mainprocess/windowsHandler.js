@@ -1,5 +1,6 @@
 import {BrowserWindow} from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
+
 export default class windowHandler{
     constructor(pageScript,options={
         width: 800,
@@ -17,7 +18,7 @@ export default class windowHandler{
           contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
         };
         this.pageScript=pageScript;
-        this.window=null
+        this.win=null
     }
 
     async createWindow(){
@@ -25,30 +26,16 @@ export default class windowHandler{
         
           if (process.env.WEBPACK_DEV_SERVER_URL+this.pageScript) {
             
-            try{
-              //error is here because the folder location is different than where it is at background.js
-              await this.win.loadURL(process.env.WEBPACK_DEV_SERVER_URL+this.pageScript)
-            }
-            catch(e){
-              
-                console.log(e)
-              
-            }
             
-            if (!process.env.IS_TEST) 
-            {
-              this.win.webContents.openDevTools()
-            }
+              //error is here because the folder location is different than where it is at background.js
+            await this.win.loadURL(process.env.WEBPACK_DEV_SERVER_URL+this.pageScript)
+            if (!process.env.IS_TEST) this.win.webContents.openDevTools()
+            
           } 
           else {
-            try{
               createProtocol('app')
-              this.win.loadURL('app://./'+this.pageScript)
+              this.win.loadURL('app://./'+this.pageScript+'.html')
             }
-            catch(e){
-              console.log(e)
-            }
-      }
     }
 
     sendEventData(eventName,data){

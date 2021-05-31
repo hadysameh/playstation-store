@@ -64,7 +64,7 @@ export default {
       this.db_handler.editCurrentDuration(data)
       //after the row in db is edited time to open the new window
       data.display_from=this.display_from
-      data.display_to=this.display_to
+      data.display_to=dateHandler.getDateTime()
       ipcRenderer.send('duration-end',data);
     },
     onCancel(){

@@ -32,6 +32,7 @@
 
 <script>
 import {ipcRenderer} from 'electron'
+
 import rentingtimestatus from './rentingtimestatus/rentingtimestatus'
 import dbHandler from '../../views/viewsHelpers/dbHandler'
 import * as dateHandler from '../../views/viewsHelpers/dateHandler'
@@ -54,9 +55,10 @@ export default {
     },
     mounted(){
         
+        
         this.handelEvents()
         this.adjustTheDeviceIfRented()
-        // this.alwaysCheckOnDurations()
+        this.alwaysCheckOnDurations()
     },
     methods:{
         onOpenDurationCreate(id){
@@ -139,9 +141,12 @@ export default {
             })
         },
         //this won't work because of the many connections to mysql
-        // alwaysCheckOnDurations(){
-        //     setInterval(()=>{this.adjustTheDeviceIfRented()}, 1000)
-        // }
+        alwaysCheckOnDurations(){
+            setInterval(()=>{
+                this.adjustTheDeviceIfRented();
+                // console.log('done')
+            }, 5000)
+        }
         
     }
     

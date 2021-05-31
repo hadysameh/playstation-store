@@ -11,7 +11,7 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
   },
-  "main": "./background.js",
+  "main": "background.js",
   "dependencies": {
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.5",
@@ -52,12 +52,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-unused-vars": "off" 
+      "no-unused-vars": "off"
     }
-  },
-  "directories": {
-    "buildResources": "build",
-    "app": "build"
   },
   "browserslist": [
     "> 1%",

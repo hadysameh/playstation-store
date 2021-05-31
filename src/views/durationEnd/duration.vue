@@ -29,10 +29,11 @@ export default {
             this.device_id=data.device_id
             this.from=data.starts_from
             this.to=data.ends_at
+            // console.log(this.to)
             this.display_from=data.display_from
-            this.display_to=data.display_to
+            this.display_to=data.ends_at
             this.db_handler.getDeviceName(data.device_id).then(data=>{
-                console.log(data[0][0].name)
+                // console.log(data[0][0].name)
                 this.deviceName = data[0][0].name
             })
         });

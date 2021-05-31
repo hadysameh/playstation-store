@@ -4,12 +4,13 @@ import { app, protocol, BrowserWindow , ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
-import windowsHandler from './windowsHandler.js'
+// import windowsHandler from './windowsHandler.js'
+import {createWindow} from './windowModule.js'
 
 
 
 export default function(){
-    protocol.registerSchemesAsPrivileged([
+      protocol.registerSchemesAsPrivileged([
         { scheme: 'app', privileges: { secure: true, standard: true } }
       ])
       
@@ -29,8 +30,7 @@ export default function(){
         
         if (BrowserWindow.getAllWindows().length === 0){
           //  createWindow()
-           let winHandler = new windowsHandler('index');
-           winHandler.createWindow();
+          createWindow('index')
           }
       })
       
@@ -47,9 +47,7 @@ export default function(){
             console.error('Vue Devtools failed to install:', e.toString())
           }
         }
-          let winHandler = new windowsHandler('index');
-          // winHandler.win.webContents.openDevTools();
-          winHandler.createWindow();
+        createWindow('index')
       })
       
       // Exit cleanly on request from parent process in development mode.

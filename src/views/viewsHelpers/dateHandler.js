@@ -1,3 +1,4 @@
+
 function getDateTime(){
     var date = new Date()
     date.setHours(date.getHours() + 2);
@@ -19,16 +20,26 @@ function getDateTimeForNormalTime(time){
 }
 //works just fine
 function addADayToDateTime(dateTime){
-    let date_timeArr = dateTime.split(' ')
-    let dateStr = date_timeArr[0]
-    let dateArr = dateStr.split('-')
-    let day = dateArr[2]
-    day = Number(day)+1
-    dateArr[2]=day
-    dateStr=dateArr.join('-')
-    date_timeArr[0]= dateStr
-    let date_timeStr = date_timeArr.join(' ')
-    return date_timeStr
+    // let todayDate = new Date()
+    // let tomorrow_dateTime = dateTime({date: todayDate.getDate()+1});
+
+    // let tomorrow_dateStr = tomorrow_dateTime.split(" ")[0]
+    // let date_timeArr = dateTime.split(' ')
+    // let dateStr = date_timeArr[0]
+    // let dateArr = dateStr.split('-')
+    // let day = dateArr[2]
+    // day = Number(day)+1
+    // dateArr[2]=day
+    // dateStr=dateArr.join('-')
+    // date_timeArr[0]= dateStr
+    // let date_timeStr = date_timeArr.join(' ')
+    // return date_timeStr
+
+    let thedate = new Date(Date.parse(dateTime));
+    thedate.setDate(thedate.getDate() +1)
+    // return thedate.toISOString().slice(0, 19).replace('T', ' ');
+    return new Date(thedate).toISOString().slice(0, 19).replace('T', ' ');
+    
 }
 
 function tweleveHoursModeDisplay(time){

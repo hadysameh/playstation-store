@@ -66,7 +66,7 @@ export default {
                     let starts_from = getDateTimeForNormalTime(this.from)
                     let ends_at = getDateTimeForNormalTime(this.to)
 
-                    if(starts_from>ends_at){
+                    if(starts_from > ends_at){
                         ends_at = addADayToDateTime(getDateTimeForNormalTime(this.to))
                     }
                     
