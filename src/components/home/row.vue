@@ -144,8 +144,8 @@ export default {
         alwaysCheckOnDurations(){
             setInterval(()=>{
                 this.adjustTheDeviceIfRented();
-                // console.log('done')
-            }, 5000)
+                console.log('done')
+            }, 2000)
         }
         
     }

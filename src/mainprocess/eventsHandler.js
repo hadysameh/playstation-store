@@ -24,7 +24,10 @@ export default  function(){
     createWindow('durationcreate',{height:300,width:400})
     .then(win=>{
       durationCreateWindow = win;
-      durationCreateWindow.webContents.send('duration-create-device-id',id  );      
+      setTimeout(()=>{
+        durationCreateWindow.webContents.send('duration-create-device-id',id  );  
+      },1000) 
+         
     })
     
   })
@@ -47,7 +50,10 @@ export default  function(){
     createWindow('durationend',{height:300,width:500})
       .then(win=>{
         durationEndWindow= win;
-        durationEndWindow.webContents.send('duration-data',data  ); 
+        setTimeout(()=>{
+          durationEndWindow.webContents.send('duration-data',data  ); 
+        },1000) 
+        // durationEndWindow.webContents.send('duration-data',data  ); 
         
       })
   })
@@ -81,7 +87,10 @@ export default  function(){
     createWindow('durationedit',{height:300,width:500})
     .then(win=>{
       durationEditWindow= win;
-      durationEditWindow.webContents.send('duration-data',data  );      
+      setTimeout(()=>{
+        durationEditWindow.webContents.send('duration-data',data  );  
+      },1000) 
+      // durationEditWindow.webContents.send('duration-data',data  );      
     })
        
   })
@@ -91,8 +100,11 @@ export default  function(){
     let MainWindow = getMainWindow()
     // let allWindows = BrowserWindow.getAllWindows();
     
-    if(MainWindow){      
-      MainWindow.webContents.send(`device_number_${data.device_id}_is_edited` ,data);
+    if(MainWindow){     
+      setTimeout(()=>{
+        MainWindow.webContents.send(`device_number_${data.device_id}_is_edited` ,data);
+      },1000) 
+      
     }
     durationEditWindow.close();
     durationEditWindow=null
@@ -106,7 +118,12 @@ export default  function(){
     createWindow('devicerecord')
       .then(win=>{
         deviceRecordsWindow= win
-        deviceRecordsWindow.webContents.send('device-records-data',data  );
+        
+        setTimeout(()=>{
+          deviceRecordsWindow.webContents.send('device-records-data',data  );
+        },1000)
+        
+        // deviceRecordsWindow.webContents.send('device-records-data',data  );
       })
       
       

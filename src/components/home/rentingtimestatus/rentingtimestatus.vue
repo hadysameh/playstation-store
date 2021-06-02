@@ -64,7 +64,8 @@ export default {
       this.db_handler.editCurrentDuration(data)
       //after the row in db is edited time to open the new window
       data.display_from=this.display_from
-      data.display_to=dateHandler.getDateTime()
+      let timeOnly = dateHandler.getDateTime().split(' ')[1]
+      data.display_to=dateHandler.tweleveHoursModeDisplay(timeOnly)
       ipcRenderer.send('duration-end',data);
     },
     onCancel(){

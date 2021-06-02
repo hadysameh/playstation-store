@@ -31,7 +31,7 @@ export default {
             this.to=data.ends_at
             // console.log(this.to)
             this.display_from=data.display_from
-            this.display_to=data.ends_at
+            this.display_to=data.display_to
             this.db_handler.getDeviceName(data.device_id).then(data=>{
                 // console.log(data[0][0].name)
                 this.deviceName = data[0][0].name

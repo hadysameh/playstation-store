@@ -38,8 +38,11 @@ export default {
             pageNumber:1
         }
     },
-    mounted(){
+    created(){
+        let tempDate = new Date()
+        console.log(tempDate)
         ipcRenderer.on('device-records-data',(event,data)=>{
+            console.log('device-records-data')
             this.device_id=data.device_id
             this.getDevicesRecords()
         })
